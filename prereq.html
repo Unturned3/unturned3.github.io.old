@@ -16,12 +16,51 @@
 
 	<center>
 		<h1> <i>Micro</i>Linux </h1> 
-		<a href="wiki.html">Prev</a> | <a href="wiki.html">Wiki Home Page</a> | <a href="setenv.html">Next</a> 
+		<a href="wiki.html">Prev</a> | 
+		<a href="wiki.html">Wiki Home Page</a> | 
+		<a href="setenv.html">Next</a> 
 	</center>
 </head>
 
 <body>
 	<br>
-	<h3>Prerequisites</h3>
+	<center><h2>Prerequisites</h2></center>
+	<br>
+	<h3>Skill requirements</h3>
+	<p>
+		Building a Linux system from the ground up is not a trivial task, and it requires familiarity
+		with the Linux command line (shell). As a minimum, you should be able to do basic command line
+		operations such as copying/moving/renaming files, changing/listing directories, printing file
+		contents, deleting files, creating files/directories, etc. You are also expected to edit files
+		from the command line, using a text editor such as GNU Nano or Vi/Vim.
+	</p>
+	<p>
+		If you've never worked with the command line or Linux in general, I suggest you to visit
+		<a href="linux-tutorial.info">linux-tutorial.info</a> to learn some basic knowledge first.
+	</p>
+	<p>
+		You also need to know the basic of software compilation (such as using gcc, make, etc.). Here's
+		good website about the subject:
+		<a href="http://www.tldp.org/HOWTO/Software-Building-HOWTO.html#toc2">www.tldp.org</a>
+	</p>
+
+	<h3>Host requirements</h3>
+	<p>
+		You need to have a working Linux environment (Ideally a mainstream distribution such as
+		Debian or Arch) setup on your machine. It can either be a bare-metal hard drive install
+		or can be in a virtual machine. It needs to have at least 2GB of RAM and 15GB of free
+		disk space in order to build all the packages.
+	</p>
+
+	Here's a list of extra packages you need to install on your system:
+	<ul>
+		<li> <b>gcc</b> (The GNU compile collection)</li>
+		<li> <b>make</b>  (a build tool that simplifies the compilation process for users</li>
+		<li> <b>bc</b> (needed for the building of the Linux kernel)</li>
+		<li> <b>qemu</b> (Quick Emulator, used to run and test <i>Micro</i>Linux</li>
+		<li> <b>ncurses</b> (a menu interface for configuration scripts)</li>
+		<li> <b>gawk</b> (a text-processing language) </li>
+	</ul>
+	<p>
 </body>
 </html>

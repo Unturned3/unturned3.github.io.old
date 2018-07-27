@@ -6,6 +6,10 @@
 	}
 	p {
 		text-indent: 20px;
+		font-family: "Trebuchet MS", Helvetica, sans-serif;
+	}
+	code {
+		font-family: "Courier New", Courier, monospace;
 	}
 </style>
 
@@ -16,12 +20,41 @@
 
 	<center>
 		<h1> <i>Micro</i>Linux </h1> 
-		<a href="setenv.html">Prev</a> | <a href="wiki.html">Wiki Home Page</a> | <a href="wiki.html">Next</a> 
+		<a href="prereq.html">Prev</a> | <a href="wiki.html">Wiki Home Page</a> | <a href="wiki.html">Next</a> 
 	</center>
 </head>
 
 <body>
 	<br>
 	<h3>Absolute Minimum</h3>
+	<hr>
+	<p>
+		In this section, we will be building a <i>minimal</i> Linux system that we can boot using Quick Emulator
+		(QEMU). In order for our system to be called <i>Linux</i>, it needs to run the Linux kernel. The kernel is
+		a core component of the system that interacts with the hardware and manages the resources allocated to
+		processes running on the computer. Without the kernel userspace applications would need to directly interact
+		with the hardware they are running on, which is a difficult and messy task.
+	</p>
+	<p>
+		Visite <a href="www.kernel.org">kernel.org</a> and click on the yellow button saying "Latest Stable Kernel"
+		to download the Linux kernel source code. Then create a working directory in your home folder named "build"
+		and copy the downloaded tarball into the build folder. Now decompress the tarball (assuming it's called
+		kernel.tar.xz) <br> <br>
+		<code>
+		$ xz -d kernel.tar.xz <br>
+		$ tar -xf kernel.tar <br>
+		$ rm kernel.tar <br> <br>
+		<code>
+		<p>
+		Remove the tarball, then rename the decompressed folder to "kernel" and change directory into it. <br> <br>
+		</p>
+		<i>
+		$ cd kernel <br> <br>
+		</i>
+		Clean the source code folder of any leftovers from previous builds: <br> <br>
+		<i>
+		$ make mrproper
+		</i>
+	</p>
 </body>
 </html>

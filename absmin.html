@@ -1,4 +1,5 @@
 <html>
+
 <style>
 	body {
 		background-color: #f8cd99; 
@@ -29,32 +30,81 @@
 	<h3>Absolute Minimum</h3>
 	<hr>
 	<p>
-		In this section, we will be building a <i>minimal</i> Linux system that we can boot using Quick Emulator
-		(QEMU). In order for our system to be called <i>Linux</i>, it needs to run the Linux kernel. The kernel is
-		a core component of the system that interacts with the hardware and manages the resources allocated to
-		processes running on the computer. Without the kernel userspace applications would need to directly interact
-		with the hardware they are running on, which is a difficult and messy task.
+		In this section, we will take a look at the internal workings of a generic Linux system, fish out the core
+		components required, and build our own minimum system from scratch.
 	</p>
+
+	<h3>Boot Process</h3>
+	<hr>
 	<p>
-		Visite <a href="www.kernel.org">kernel.org</a> and click on the yellow button saying "Latest Stable Kernel"
-		to download the Linux kernel source code. Then create a working directory in your home folder named "build"
-		and copy the downloaded tarball into the build folder. Now decompress the tarball (assuming it's called
-		kernel.tar.xz) <br> <br>
-		<code>
+		Understanding how does a Linux system starts and what components are loaded at which
+		stage is vital for ensuring the proper functionality of our own mini system.
+
+		<ol>
+			<li>
+				BIOS gets loaded into RAM from the motherboard, looks for the 1st
+				bootable device it finds (hard drive, CD-ROM, etc), then it loads the
+				bootloader (grub, syslinux, ...) installed on that device.
+				<br> <br>
+			</li>
+
+			<li>
+				The bootloader then loads the kernel image (vmlinuz/bzImage) into memory
+				and then passes the control over to the running kernel. <br> <br>
+			</li>
+
+			<li>
+				The kernel mounts the root file system, then executes a userspace program
+				to initialize the system, which is usually /sbin/init.
+				<br> <br>
+			</li>
+
+			<li>
+				/sbin/init is the first userspace process that the kernel launches and its
+				PID is always 1. This process cannot exit during the runtime of the system
+				or else you will end up with a kernel panic (when the kernel runs into an
+				fatal error). <br>
+
+				All other userspace processes are descendants of init, and all orphaned 
+				processes are automatically adopted by init. <br>
+
+				Commonly, init reads /etc/inittab in order to carry out specific initialization
+				tasks, such as loading modules, mounting disks, running other scripts, starting
+				daemon processes, etc. <br> <br>
+			</li>
+
+			<li>
+				/sbin/init can now open terminals or start a graphical user interface for the
+				user to use.
+			</li>
+		</ul>
+	</p>
+
+
+	<h3>Constructing the System</h3>
+	<hr>
+	<p>
+		Visite <a href="https://www.kernel.org">kernel.org</a> and click on the yellow button
+		saying "Latest Stable Kernel" to download the Linux kernel source code. Then create a
+		working directory in your home folder named "build" and copy the downloaded tarball into the build folder. Rename the tarball "kernel.tar.xz"
+		and untar it:
+	</p>
+	<code>
 		$ xz -d kernel.tar.xz <br>
 		$ tar -xf kernel.tar <br>
-		$ rm kernel.tar <br> <br>
-		</code>
-		<p>
-		Remove the tarball, then rename the decompressed folder to "kernel" and change directory into it. <br> <br>
-		</p>
-		<code>
-		$ cd kernel <br> <br>
-		</code>
-		Clean the source code folder of any leftovers from previous builds: <br> <br>
-		<code>
-		$ make mrproper
-		</code>
+		$ rm kernel.tar <br>
+	</code>
+	<p>
+		Remove the tarball, then rename the decompressed folder to "kernel" and change directory into it.
 	</p>
+	<code>
+		$ cd kernel
+	</code>
+	<p>
+		Clean the source code folder of any leftovers from previous builds:
+	</p>
+	<code>
+		$ make mrproper
+	</code>
 </body>
 </html>

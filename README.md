@@ -1,5 +1,6 @@
-Note: this website repo has been archived and is no longer in use.
-For more information on the Microdot (formerly MicroLinux) project, see https://github.com/Unturned3/Microdot/
+__Note__: this website repo has been archived and is no longer in use.
+
+For more information on the Microdot (formerly MicroLinux) project, please visit https://github.com/Unturned3/Microdot/
 
 #### MicroLinux 
 This repository contains files for the MicroLinux project webpage.
